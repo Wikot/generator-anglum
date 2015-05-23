@@ -1,0 +1,30 @@
+{
+  "name": "generator-anglum",
+  "version": "0.0.1",
+  "description": "AngularJS + Lumen generator",
+  "license": "MIT",
+  "homepage": "https://github.com/halles/generator-anglum",
+  "bug": "https://github.com/halles/generator-anglum/issues",
+  "repository": "halles/generator-anglum",
+  "author": {
+    "name": "Matías Halles",
+    "email": "matias.halles@gmail.com",
+    "url": "https://github.com/halles"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.19.0",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+  }
+}

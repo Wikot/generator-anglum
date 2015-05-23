@@ -1,0 +1,8 @@
+{
+  "require": {
+    "laravel/lumen": "dev-master",
+    "facebook/php-sdk-v4": "4.0.*",
+    "guzzlehttp/guzzle": "~5.0",
+    "guzzlehttp/oauth-subscriber": "*"
+  }
+}
