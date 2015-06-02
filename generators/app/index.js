@@ -32,6 +32,14 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('backend/')
       );
       this.fs.copy(
+        this.templatePath('frontend/**/*'),
+        this.destinationPath('frontend/')
+      );
+      this.fs.copy(
+        this.templatePath('frontend/**/.*'),
+        this.destinationPath('frontend/')
+      );
+      this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
