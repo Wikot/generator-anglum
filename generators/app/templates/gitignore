@@ -1,4 +1,14 @@
+# Dependencies directories
+
 node_modules/
 bower_components/
 vendor/
-config/
+
+# Application files
+
+.env
+!.env.example
+
+# Temp files
+
+.DS_Store

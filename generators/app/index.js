@@ -24,6 +24,14 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
       this.fs.copy(
+        this.templatePath('lumen/**/*'),
+        this.destinationPath('backend/')
+      );
+      this.fs.copy(
+        this.templatePath('lumen/**/.*'),
+        this.destinationPath('backend/')
+      );
+      this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
@@ -38,6 +46,10 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copy(
         this.templatePath('_gulpfile.js'),
         this.destinationPath('gulpfile.js')
+      );
+      this.fs.copy(
+        this.templatePath('env.example'),
+        this.destinationPath('.env.example')
       );
     },
 
@@ -63,5 +75,10 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
     this.installDependencies();
+    this.spawnCommand('composer', ['install']);
+  },
+
+  end: function (){
+
   }
 });
