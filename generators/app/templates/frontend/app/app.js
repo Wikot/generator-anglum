@@ -1,11 +1,11 @@
 'use strict';
 
-var app = angular.module("anglumApp",["ngRoute","satellizer","ui.bootstrap", "ngFileUpload", "ngProgress"]);
+var <%= p.projectCamelcaseName %> = angular.module("<%= p.projectCamelcaseName %>App",["ngRoute","satellizer","ui.bootstrap", "ngFileUpload", "ngProgress"]);
 
 /**
  *  Main App Controller
  **/
 
-app.controller('anglumController', ['$scope', function ($scope) {
+<%= p.projectCamelcaseName %>.controller('<%= p.projectCamelcaseName %>Controller', ['$scope', function ($scope) {
 
 }]);

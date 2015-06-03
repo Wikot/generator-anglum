@@ -2,27 +2,45 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var _ = require('lodash');
 
 module.exports = yeoman.generators.Base.extend({
+
   prompting: function () {
     var done = this.async();
 
-    this.log(yosay(
-      'Welcome to the badass ' + chalk.red.bgYellow('Anglum') + ' generator!'
-    ));
+    this.log(
+      ' ---------------------------- \n'+
+      '| Wikot | ' + chalk.red.bgWhite(' Anglum Generator ') + ' |\n'+
+      ' ---------------------------- '
+    );
 
-    var prompts = [];
+    var prompts = [{
+      type    : 'input',
+      name    : 'projectName',
+      message : 'Your project name',
+      default : this.appname, // Default to current folder name
+      store   : true
+    },{
+      type    : 'input',
+      name    : 'projectDescription',
+      message : 'your project Description',
+      default : 'Anglum Generated Project',
+      store   : true
+    }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
+      this.props.projectCamelcaseName = _.camelCase(props.projectName);
       // To access props later use this.props.someOption;
-
+      this.log(this.props);
       done();
     }.bind(this));
   },
 
   writing: {
     app: function () {
+
       this.fs.copy(
         this.templatePath('lumen/**/*'),
         this.destinationPath('backend/')
@@ -31,25 +49,29 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('lumen/**/.*'),
         this.destinationPath('backend/')
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('frontend/**/*'),
-        this.destinationPath('frontend/')
+        this.destinationPath('frontend/'),
+        { p: this.props }
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('frontend/**/.*'),
-        this.destinationPath('frontend/')
+        this.destinationPath('frontend/'),
+        { p: this.props }
       );
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('package.json')
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
+        this.destinationPath('bower.json'),
+        { p: this.props }
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_composer.json'),
-        this.destinationPath('composer.json')
+        this.destinationPath('composer.json'),
+        { p: this.props }
       );
       this.fs.copy(
         this.templatePath('_gulpfile.js'),

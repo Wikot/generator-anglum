@@ -1,5 +1,6 @@
 {
-  "description": "Anglum Generated Project",
+  "name": "<%= p.projectName %>",
+  "description": "<%= p.projectDescription %>",
   "keywords": ["framework", "laravel", "lumen", "angularjs", "bower"],
   "license": "MIT",
   "type": "project",

@@ -1,4 +1,4 @@
-app.run(function (){
+<%= p.projectCamelcaseName %>.run(function (){
 
   /**
   window.fbAsyncInit = function() {

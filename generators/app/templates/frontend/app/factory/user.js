@@ -1,4 +1,4 @@
-app.factory("User", function ($rootScope, $http, $location, ngProgress){
+<%= p.projectCamelcaseName %>.factory("User", function ($rootScope, $http, $location, ngProgress){
   var interfaz = {
     data: null,
     isLogin: false,

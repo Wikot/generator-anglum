@@ -1,4 +1,4 @@
-app.config(function ($routeProvider){
+<%= p.projectCamelcaseName %>.config(function ($routeProvider){
 
   $routeProvider
   .when('/',
