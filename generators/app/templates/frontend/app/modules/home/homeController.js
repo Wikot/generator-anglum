@@ -2,9 +2,9 @@
 
   $scope.anglum = {
     url   : 'http://wikot.io/anglum',
-    title : 'Anglum Generated Project'
+    title : '<%= p.projectName %>'
   };
 
-  $scope.message = 'You have arrived.';
+  $scope.message = '<%= p.projectDescription %>.';
 
 });
