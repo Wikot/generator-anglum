@@ -1,8 +1,9 @@
 # Dependencies directories
 
-node_modules/
-bower_components/
-vendor/
+/node_modules
+/bower_components
+/vendor
+/lumen.log
 
 # Application files
 
