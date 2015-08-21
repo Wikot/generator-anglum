@@ -30,6 +30,10 @@ cd your-project-dir
 yo anglum
 ```
 
+## To Do
+
++ Inject modules in angular based on options chosen in the generator
+
 ## License
 
 MIT
