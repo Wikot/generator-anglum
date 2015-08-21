@@ -45,7 +45,7 @@ module.exports = yeoman.generators.Base.extend({
           checked: true,
         },
         {
-          name: 'ngProgress',
+          name: 'angular-loading-bar',
           checked: true,
         }
       ],
@@ -61,7 +61,7 @@ module.exports = yeoman.generators.Base.extend({
         },
         {
           name: 'jQuery',
-          checked: true,
+          checked: false,
         },
         {
           name: 'Animate.css',
@@ -69,7 +69,11 @@ module.exports = yeoman.generators.Base.extend({
         },
         {
           name: 'Font Awesome',
-          checked: true,
+          checked: false,
+        },
+        {
+          name: 'SocketIO client',
+          checked: false,
         }
       ],
       store: true
@@ -88,40 +92,65 @@ module.exports = yeoman.generators.Base.extend({
       this.log(this.props);
 
       this.props.jsDeps = [];
+      this.props.jsInjects = [];
 
       if(this.props.angularDependencies.indexOf('Angulartics + Google Analytics Plugin') >= 0){
         this.props.googleAnalytics = true;
         this.props.jsDeps.push('angulartics');
         this.props.jsDeps.push('angulartics-google-analytics');
+        this.props.jsInjects.push('angulartics');
+        this.props.jsInjects.push('angulartics.google.analytics');
       }
 
       if(this.props.angularDependencies.indexOf('Satellizer') >= 0){
+        this.props.satellizer = true;
         this.props.jsDeps.push('satellizer');
+        this.props.jsInjects.push('satellizer');
       }
 
       if(this.props.angularDependencies.indexOf('ng-file-upload') >= 0){
+        this.props.ngFileUpload = true;
         this.props.jsDeps.push('ng-file-upload');
+        this.props.jsInjects.push('ng-file-upload');
       }
 
-      if(this.props.angularDependencies.indexOf('ngProgress') >= 0){
-        this.props.jsDeps.push('ngprogress');
+      if(this.props.angularDependencies.indexOf('angular-loading-bar') >= 0){
+        this.props.angularLoadingBar = true;
+        this.props.jsDeps.push('angular-loading-bar');
+        this.props.jsInjects.push('angular-loading-bar');
+        this.props.jsInjects.push('ngAnimate');
       }
 
       if(this.props.frontendDependencies.indexOf('Bootstrap (Recommended. Generated templates use this)') >= 0){
+        this.props.bootstrap = true;
         this.props.jsDeps.push('bootstrap');
       }
 
       if(this.props.frontendDependencies.indexOf('jQuery') >= 0){
+        this.props.jQuery = true;
         this.props.jsDeps.push('jquery');
       }
 
       if(this.props.frontendDependencies.indexOf('Animate.css') >= 0){
+        this.props.animateCss = true;
         this.props.jsDeps.push('animate.css');
       }
 
       if(this.props.frontendDependencies.indexOf('Font Awesome') >= 0){
+        this.props.fontAwesome = true;
         this.props.jsDeps.push('Font-Awesome');
       }
+
+      if(this.props.frontendDependencies.indexOf('SocketIO client') >= 0){
+        this.props.socketIOClient = true;
+        this.props.jsDeps.push('socket.io-client');
+      }
+
+      this.props.jsInjects = _.uniq(this.props.jsInjects);
+
+      this.props.angularInjects = '"'+this.props.jsInjects.join('","')+'"';
+
+      this.props.npmDeps = [];
 
       done();
     }.bind(this));
@@ -200,8 +229,13 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
 
-    this.props.jsDeps.push('angular');
+    //this.props.npmDeps = ['gulp','bower','wiredep','lodash'];
+
+    this.npmInstall();
+
+    this.props.jsDeps.push('angular','ngAnimate');
     this.bowerInstall(this.props.jsDeps, { 'save': true });
+
     // this.spawnCommand('composer', ['install']);
 
   },

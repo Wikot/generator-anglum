@@ -8,24 +8,13 @@
 
     <title><%= p.projectName %></title>
 
-    <!-- Bootstrap for Angular -->
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css" />
-    <!-- / Bootstrap for Angular -->
-
-    <!-- ngProgress -->
-    <link href="lib/ngprogress/ngProgress.css" rel="stylesheet">
-    <!-- / ngProgress -->
-
-    <!-- animate.css -->
-    <link href="lib/animate.css/animate.min.css" rel="stylesheet">
-    <!-- / animate.css -->
-
-    <!-- FontAwesome -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- / FontAwesome -->
+    <!-- bower:css -->
+    <!-- endbower -->
 
     <!-- Application Styles -->
+    <% if(p.bootstrap){ %>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css" />
+    <% } %>
     <link href="css/style.css" rel="stylesheet">
     <!-- / Application Styles -->
 
@@ -59,52 +48,24 @@
 
   </body>
 
-  <!-- jQuery -->
-  <script src="lib/jquery/dist/jquery.min.js"></script>
-  <!-- / jQuery -->
-
-  <!-- AngularJS -->
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="lib/angular-route/angular-route.min.js"></script>
-  <!-- / AngularJS -->
-
-  <!-- Bootstrap for AngularJS -->
-  <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-  <!-- / Bootstrap for AngularJS -->
-
-  <!-- Angulartics + Google Analytics -->
-  <script src="lib/angulartics/dist/angulartics.min.js"></script>
-  <script src="lib/angulartics/dist/angulartics-ga.min.js"></script>
-  <!-- / Angulartics + Google Analytics -->
-
-  <!-- ngProgress -->
-  <script src="lib/ngprogress/build/ngProgress.min.js"></script>
-  <!-- / ngProgress -->
-
-  <!-- Satellizer -->
-  <script src="lib/satellizer/satellizer.min.js"></script>
-  <!-- / Satellizer -->
-
-  <!-- SocketsIO -->
-  <script src="lib/sio-client/socket.io.js"></script>
-  <!-- / SocketsIO -->
-
+  <% if(p.ngFileUpload) {%>
   <!-- FileUploads -->
   <script>
       //optional need to be loaded before angular-file-upload-shim(.min).js
       FileAPI = {
           //only one of jsPath or jsUrl.
-          jsPath: 'lib/ng-file-upload/FileAPI.min.js',
+          jsPath: '/lib/ng-file-upload/FileAPI.min.js',
           //only one of staticPath or flashUrl.
-          staticPath: 'lib/ng-file-upload/FileAPI.flash.swf',
+          staticPath: '/lib/ng-file-upload/FileAPI.flash.swf',
           //forceLoad: true, html5: false //to debug flash in HTML5 browsers
           //noContentTimeout: 10000 (see #528)
       }
   </script>
-
   <script src="lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
-  <script src="lib/ng-file-upload/ng-file-upload.min.js"></script>
-  <!-- / FileUploads -->
+  <% } %>
+
+  <!-- bower:js -->
+  <!-- endbower -->
 
   <!-- Application -->
 
