@@ -6,7 +6,7 @@ gulp.task('default', function() {
 });
 
 
-gulp.task('bower', function () {
+gulp.task('wiredep', function () {
 
   gulp.src('./frontend/index.html')
     .pipe(wiredep.stream({

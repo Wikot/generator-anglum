@@ -16,11 +16,5 @@
   "dependencies": {},
   "devDependencies": {},
   "resolutions": {},
-  "overrides": {
-    "angulartics": {
-      "main": [
-        "src/angulartics.js"
-      ]
-    }
-  }
+  "overrides": <%- p.bowerOverrides %>
 }

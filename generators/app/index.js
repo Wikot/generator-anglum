@@ -93,6 +93,7 @@ module.exports = yeoman.generators.Base.extend({
 
       this.props.jsDeps = [];
       this.props.jsInjects = [];
+      this.props.bowerOverrides = {};
 
       if(this.props.angularDependencies.indexOf('Angulartics + Google Analytics Plugin') >= 0){
         this.props.googleAnalytics = true;
@@ -100,6 +101,11 @@ module.exports = yeoman.generators.Base.extend({
         this.props.jsDeps.push('angulartics-google-analytics');
         this.props.jsInjects.push('angulartics');
         this.props.jsInjects.push('angulartics.google.analytics');
+        this.props.bowerOverrides.angulartics = {
+          "main": [
+            "src/angulartics.js"
+          ]
+        };
       }
 
       if(this.props.angularDependencies.indexOf('Satellizer') >= 0){
@@ -124,6 +130,13 @@ module.exports = yeoman.generators.Base.extend({
       if(this.props.frontendDependencies.indexOf('Bootstrap (Recommended. Generated templates use this)') >= 0){
         this.props.bootstrap = true;
         this.props.jsDeps.push('bootstrap');
+        this.props.bowerOverrides.bootstrap = {
+          "main": [
+            "dist/js/bootstrap.js",
+            "dist/css/bootstrap.css",
+            "dist/css/bootstrap-theme.css"
+          ]
+        };
       }
 
       if(this.props.frontendDependencies.indexOf('jQuery') >= 0){
@@ -150,9 +163,12 @@ module.exports = yeoman.generators.Base.extend({
 
       this.props.angularInjects = '"'+this.props.jsInjects.join('","')+'"';
 
+      this.props.bowerOverrides = JSON.stringify(this.props.bowerOverrides);
+
       this.props.npmDeps = [];
 
       done();
+
     }.bind(this));
 
   },
@@ -235,12 +251,15 @@ module.exports = yeoman.generators.Base.extend({
 
     this.props.jsDeps.push('angular','ngAnimate');
     this.bowerInstall(this.props.jsDeps, { 'save': true });
+    this.spawnCommand('gulp', ['wiredep']);
 
     // this.spawnCommand('composer', ['install']);
 
   },
 
   end: function (){
+
+    this.config.save();
 
   }
 });
