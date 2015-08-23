@@ -95,6 +95,9 @@ module.exports = yeoman.generators.Base.extend({
       this.props.jsInjects = [];
       this.props.bowerOverrides = {};
 
+      this.props.jsDeps.push('angular','angular-ui-router');
+      this.props.jsInjects.push('ui.router');
+
       if(this.props.angularDependencies.indexOf('Angulartics + Google Analytics Plugin') >= 0){
         this.props.googleAnalytics = true;
         this.props.jsDeps.push('angulartics');
@@ -117,14 +120,13 @@ module.exports = yeoman.generators.Base.extend({
       if(this.props.angularDependencies.indexOf('ng-file-upload') >= 0){
         this.props.ngFileUpload = true;
         this.props.jsDeps.push('ng-file-upload');
-        this.props.jsInjects.push('ng-file-upload');
+        this.props.jsInjects.push('ngFileUpload');
       }
 
       if(this.props.angularDependencies.indexOf('angular-loading-bar') >= 0){
         this.props.angularLoadingBar = true;
-        this.props.jsDeps.push('angular-loading-bar');
-        this.props.jsInjects.push('angular-loading-bar');
-        this.props.jsInjects.push('ngAnimate');
+        this.props.jsDeps.push('angular-loading-bar','angular-animate');
+        this.props.jsInjects.push('angular-loading-bar','ngAnimate');
       }
 
       if(this.props.frontendDependencies.indexOf('Bootstrap (Recommended. Generated templates use this)') >= 0){
@@ -248,10 +250,7 @@ module.exports = yeoman.generators.Base.extend({
     //this.props.npmDeps = ['gulp','bower','wiredep','lodash'];
 
     this.npmInstall();
-
-    this.props.jsDeps.push('angular','ngAnimate');
     this.bowerInstall(this.props.jsDeps, { 'save': true });
-    this.spawnCommand('gulp', ['wiredep']);
 
     // this.spawnCommand('composer', ['install']);
 
@@ -259,6 +258,7 @@ module.exports = yeoman.generators.Base.extend({
 
   end: function (){
 
+    this.spawnCommand('gulp', ['wiredep']);
     this.config.save();
 
   }

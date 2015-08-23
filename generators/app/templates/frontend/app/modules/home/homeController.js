@@ -1,4 +1,4 @@
-<%= p.projectCamelcaseName %>.controller("homeController", function ($scope, $rootScope, User) {
+<%= p.projectCamelcaseName %>.controller("homeController", function ($scope, $auth) {
 
   $scope.anglum = {
     url   : 'http://wikot.io/anglum',

@@ -15,6 +15,10 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- / Application Styles -->
 
+    <!-- replace:urlBase -->
+    <base href="/" />
+    <!-- endreplace -->
+
   </head>
 
   <body>
@@ -24,7 +28,7 @@
     <!-- <div ng-include="'app/controllers/menu/template.html'" id="container-menu"></div> -->
 
     <div id="content">
-      <div ng-view></div>
+      <div ui-view></div>
     </div>
 
     <!-- <footer ng-include="'app/controllers/footer/template.html'"></footer> -->
@@ -46,6 +50,7 @@
   </body>
 
   <% if(p.ngFileUpload) {%>
+  <!--[if lte IE 9]>
   <!-- FileUploads -->
   <script>
       //optional need to be loaded before angular-file-upload-shim(.min).js
@@ -59,6 +64,7 @@
       }
   </script>
   <script src="lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
+  <![endif]-->
   <% } %>
 
   <!-- bower:js -->
@@ -71,18 +77,19 @@
     <script src="app/run.js"></script>
 
     <!-- Factories -->
-    <script src="app/factory/user.js"></script>
-    <!-- <script src="app/factory/example.js"></script> -->
+    <script src="app/factories/user.js"></script>
+    <!-- <script src="app/factories/example.js"></script> -->
     <!-- / Factories -->
-
-    <!-- Modules -->
-    <script src="app/modules/home/homeController.js"></script>
-    <!-- <script src="app/modules/example/exampleController.js"></script> -->
-    <!-- / Modules -->
 
     <!-- Directives -->
     <!-- <script src="app/directives/example.directive.js"></script> -->
     <!-- / Directives -->
+
+    <!-- Modules -->
+    <script src="app/modules/home/homeController.js"></script>
+    <script src="app/modules/home/securedController.js"></script>
+    <!-- <script src="app/modules/example/exampleController.js"></script> -->
+    <!-- / Modules -->
 
   <!-- / Application -->
 
