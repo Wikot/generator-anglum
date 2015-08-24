@@ -89,7 +89,6 @@ module.exports = yeoman.generators.Base.extend({
 
       this.props = props;
       this.props.projectCamelcaseName = _.camelCase(props.projectName);
-      this.log(this.props);
 
       this.props.jsDeps = [];
       this.props.jsInjects = [];
@@ -198,10 +197,10 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('frontend/'),
         { p: this.props }
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
-        { p: this.props }
+        { p: this.props, author: 'Your Name Here', appname: this.appname}
       );
       this.fs.copyTpl(
         this.templatePath('_bower.json'),
@@ -213,7 +212,7 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('composer.json'),
         { p: this.props }
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_gulpfile.js'),
         this.destinationPath('gulpfile.js'),
         { p: this.props }
@@ -247,18 +246,17 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
 
-    //this.props.npmDeps = ['gulp','bower','wiredep','lodash'];
-
     this.npmInstall();
     this.bowerInstall(this.props.jsDeps, { 'save': true });
 
-    // this.spawnCommand('composer', ['install']);
+    this.spawnCommand('composer', ['install']);
 
   },
 
   end: function (){
 
     this.spawnCommand('gulp', ['wiredep']);
+    this.spawnCommand('gulp', ['url']);
     this.config.save();
 
   }

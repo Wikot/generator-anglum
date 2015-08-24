@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-8 col-sm-8 col-xs-8">
+      <h1><a href="/"><%= p.projectName %></a></h1>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-4">
+
+      <a href="login" ng-show="{{!isLoggedIn}}"><span class="fui-power"></span> Log In</a>
+      <a href="logout" ng-show="{{isLoggedIn}}"><span class="fui-power"></span> Log Out</a>
+
+    </div>
+
+  </div>
+</div>

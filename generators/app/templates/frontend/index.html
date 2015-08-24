@@ -15,9 +15,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- / Application Styles -->
 
-    <!-- replace:urlBase -->
-    <base href="/" />
-    <!-- endreplace -->
+    <!-- build:urlbase --><base href="/generator/holi/frontend/" /><!-- endbuild -->
 
   </head>
 
@@ -25,13 +23,13 @@
 
     <div id="fb-root"></div>
 
-    <!-- <div ng-include="'app/controllers/menu/template.html'" id="container-menu"></div> -->
+    <div ng-include="'app/partials/header.html'"></div>
 
     <div id="content">
       <div ui-view></div>
     </div>
 
-    <!-- <footer ng-include="'app/controllers/footer/template.html'"></footer> -->
+    <footer ng-include="'app/partials/footer.html'"></footer>
 
 
     <% if (p.googleAnalytics) { %>
@@ -78,17 +76,17 @@
 
     <!-- Factories -->
     <script src="app/factories/user.js"></script>
-    <!-- <script src="app/factories/example.js"></script> -->
     <!-- / Factories -->
 
     <!-- Directives -->
-    <!-- <script src="app/directives/example.directive.js"></script> -->
     <!-- / Directives -->
 
     <!-- Modules -->
     <script src="app/modules/home/homeController.js"></script>
     <script src="app/modules/home/securedController.js"></script>
-    <!-- <script src="app/modules/example/exampleController.js"></script> -->
+    <script src="app/modules/auth/loginController.js"></script>
+    <script src="app/modules/auth/signupController.js"></script>
+    <script src="app/modules/user/profileController.js"></script>
     <!-- / Modules -->
 
   <!-- / Application -->

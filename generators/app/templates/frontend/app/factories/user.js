@@ -1,5 +1,5 @@
-<%= p.projectCamelcaseName %>.factory("User", function ($rootScope, $http, $location, ngProgress){
-  var interfaz = {
+<%= p.projectCamelcaseName %>.factory("User", function ($rootScope, $http, $location){
+  return {
     data: null,
     isLogin: false,
     register: false,
@@ -81,5 +81,4 @@
         this.register = true;
     }
   }
-  return interfaz;
 });
